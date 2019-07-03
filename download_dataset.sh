@@ -7,7 +7,7 @@ wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip
 
 
 echo "DOWNLOAD PASSED"
-# mkdir $DATA_DIR
+mkdir $DATA_DIR
 mv coco_annotations_minival.tgz $DATA_DIR
 mv train2014.zip $DATA_DIR
 mv val2014.zip $DATA_DIR
