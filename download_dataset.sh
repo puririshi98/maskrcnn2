@@ -23,5 +23,5 @@ dtrx val2014.zip
 
 echo "EXTRACTION COMPLETE"
 
-echo "DOWNLOAD FAILED HASHCHECK"
+
 
