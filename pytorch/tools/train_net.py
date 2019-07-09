@@ -115,7 +115,7 @@ def train(cfg, local_rank, distributed):
                 # this should be removed if we update BatchNorm stats
                 broadcast_buffers=False,
             )
-    model, optimizer = amp.initialize(model, optimizer,opt_level=args.opt_level,keep_batchnorm_fp32=args.keep_batchnorm_fp32,loss_scale=args.loss_scale)
+    model, optimizer = amp.initialize(model, optimizer,opt_level='O2')
 
     arguments = {}
     arguments["iteration"] = 0
