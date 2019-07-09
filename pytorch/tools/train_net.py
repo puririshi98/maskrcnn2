@@ -94,17 +94,17 @@ def train(cfg, local_rank, distributed):
     optimizer = make_optimizer(cfg, model)
     scheduler = make_lr_scheduler(cfg, optimizer)
 
-    if use_amp:
-        # Initialize mixed-precision training
-        use_mixed_precision = cfg.DTYPE == "float16"
-        amp_handle = amp.init(enabled=use_mixed_precision, verbose=cfg.AMP_VERBOSE)
+#     if use_amp:
+#         # Initialize mixed-precision training
+#         use_mixed_precision = cfg.DTYPE == "float16"
+#         amp_handle = amp.init(enabled=use_mixed_precision, verbose=cfg.AMP_VERBOSE)
 
-        # wrap the optimizer for mixed precision
-        if cfg.SOLVER.ACCUMULATE_GRAD:
-            # also specify number of steps to accumulate over
-            optimizer = amp_handle.wrap_optimizer(optimizer, num_loss=cfg.SOLVER.ACCUMULATE_STEPS)
-        else:
-            optimizer = amp_handle.wrap_optimizer(optimizer)
+#         # wrap the optimizer for mixed precision
+#         if cfg.SOLVER.ACCUMULATE_GRAD:
+#             # also specify number of steps to accumulate over
+#             optimizer = amp_handle.wrap_optimizer(optimizer, num_loss=cfg.SOLVER.ACCUMULATE_STEPS)
+#         else:
+#             optimizer = amp_handle.wrap_optimizer(optimizer)
 
     if distributed:
         if use_apex_ddp:
@@ -115,6 +115,7 @@ def train(cfg, local_rank, distributed):
                 # this should be removed if we update BatchNorm stats
                 broadcast_buffers=False,
             )
+    model, optimizer = amp.initialize(model, optimizer,opt_level=args.opt_level,keep_batchnorm_fp32=args.keep_batchnorm_fp32,loss_scale=args.loss_scale)
 
     arguments = {}
     arguments["iteration"] = 0
