@@ -106,6 +106,8 @@ def train(cfg, local_rank, distributed):
 #         else:
 #             optimizer = amp_handle.wrap_optimizer(optimizer)
 
+
+    model, optimizer = amp.initialize(model, optimizer,opt_level='O2')
     if distributed:
         if use_apex_ddp:
             model = DDP(model, delay_allreduce=True)
@@ -115,7 +117,6 @@ def train(cfg, local_rank, distributed):
                 # this should be removed if we update BatchNorm stats
                 broadcast_buffers=False,
             )
-    model, optimizer = amp.initialize(model, optimizer,opt_level='O2')
 
     arguments = {}
     arguments["iteration"] = 0
