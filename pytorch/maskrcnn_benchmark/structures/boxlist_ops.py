@@ -87,7 +87,7 @@ def boxlist_iou(boxlist1, boxlist2):
         inter = wh[:, :, 0] * wh[:, :, 1]  # [N,M]
 
         iou = inter / (area1[:, None] + area2 - inter)
-    return iou
+    return iou.float()
 
 
 # TODO redundant, remove
