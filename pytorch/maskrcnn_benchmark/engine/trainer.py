@@ -63,11 +63,11 @@ def do_train(
         arguments["iteration"] = iteration
 
         scheduler.step()
-        images=[image.to(device).float() for image in images]
-        #images = images.to(device).float()
+        #images=[image.to(device).float() for image in images]
+        images = images.to(device)
         targets = [target.to(device).float() for target in targets]
 
-        loss_dict = model(images, targets)
+        loss_dict = model.float()(images, targets)
 
         losses = sum(loss for loss in loss_dict.values())
 
