@@ -63,8 +63,8 @@ def do_train(
         arguments["iteration"] = iteration
 
         scheduler.step()
-
-        images = images.to(device).float()
+        images=[image.to(device).float() for image in images]
+        #images = images.to(device).float()
         targets = [target.to(device).float() for target in targets]
 
         loss_dict = model(images, targets)
