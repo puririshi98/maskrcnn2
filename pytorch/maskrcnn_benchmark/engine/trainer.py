@@ -80,7 +80,7 @@ def do_train(
         # Note: If mixed precision is not used, this ends up doing nothing
         # Otherwise apply loss scaling for mixed-precision recipe
         if use_amp:        
-            with amp.scale_loss(loss, optimizer) as scaled_loss:
+            with amp.scale_loss(losses, optimizer) as scaled_loss:
                 scaled_loss.backward()
         else:
             losses.backward()
