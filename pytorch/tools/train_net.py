@@ -107,7 +107,7 @@ def train(cfg, local_rank, distributed):
 #             optimizer = amp_handle.wrap_optimizer(optimizer)
 
 
-    model, optimizer = amp.initialize(model, optimizer,opt_level='O2')
+    model, optimizer = amp.initialize(model, optimizer,opt_level='O1')
     if distributed:
         if use_apex_ddp:
             model = DDP(model, delay_allreduce=True)
