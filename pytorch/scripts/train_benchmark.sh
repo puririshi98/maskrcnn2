@@ -20,6 +20,7 @@ python -m torch.distributed.launch --nproc_per_node=$GPU tools/train_net.py \
         SOLVER.IMS_PER_BATCH $GLOBAL_BATCH \
         DTYPE "$DTYPE" \
         OUTPUT_DIR $RESULTS \
+        PER_EPOCH_EVAL True \
         | tee $LOGFILE
         
 time=`cat $LOGFILE | grep -F 'maskrcnn_benchmark.trainer INFO: Total training time' | tail -n 1 | awk -F'(' '{print $2}' | awk -F' s ' '{print $1}' | egrep -o [0-9.]+`
