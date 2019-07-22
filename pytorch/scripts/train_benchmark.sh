@@ -13,7 +13,6 @@ if ! [ -d "$RESULTS" ]; then mkdir $RESULTS; fi
 
 python -m torch.distributed.launch --nproc_per_node=$GPU tools/train_net.py \
         --config-file $CONFIG \
-        --skip-test \
         SOLVER.BASE_LR 0.04 \
         SOLVER.MAX_ITER 3665 \
         SOLVER.STEPS "(30000, 40000)" \
