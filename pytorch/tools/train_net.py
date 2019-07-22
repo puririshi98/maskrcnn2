@@ -237,6 +237,7 @@ def main():
 
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
+    cfg.PER_EPOCH_EVAL=True
     cfg.freeze()
 
     output_dir = cfg.OUTPUT_DIR
