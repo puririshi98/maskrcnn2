@@ -127,7 +127,7 @@ def do_train(
             checkpointer.save("model_final", **arguments)
 
         # per-epoch work (testing)
-        if per_iter_end_callback_fn is not None:
+        if 1==1:
             early_exit = per_iter_end_callback_fn(iteration=iteration)
             if early_exit:
                 break
