@@ -129,8 +129,7 @@ def do_train(
         # per-epoch work (testing)
         if 1==1:
             early_exit = per_iter_end_callback_fn(iteration=iteration)
-            if early_exit:
-                break
+
 
 
     total_training_time = time.time() - start_training_time
