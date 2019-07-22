@@ -66,7 +66,7 @@ def test_and_exchange_map(tester, model, distributed):
     return bbox_map, segm_map
 
 def mlperf_test_early_exit(iteration, iters_per_epoch, tester, model, distributed, min_bbox_map, min_segm_map):
-    if iteration > 0 and iteration % iters_per_epoch == 0:
+    if 1==1:
         epoch = iteration // iters_per_epoch
 
         logger = logging.getLogger('maskrcnn_benchmark.trainer')
