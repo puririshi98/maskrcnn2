@@ -15,4 +15,5 @@ python -m torch.distributed.launch --nproc_per_node=$GPU tools/train_net.py \
         --config-file $CONFIG \
         DTYPE "float16" \
         OUTPUT_DIR RESULTS \
+        PER_EPOCH_EVAL True\
         | tee $LOGFILE
