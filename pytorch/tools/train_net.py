@@ -142,7 +142,7 @@ def train(cfg, local_rank, distributed):
     # set the callback function to evaluate and potentially
     # early exit each epoch
     if 1==1:
-        cfg.PER_EPOCH_EVAL=True
+        
         per_iter_callback_fn = functools.partial(
                 mlperf_test_early_exit,
                 iters_per_epoch=iters_per_epoch,
@@ -238,7 +238,7 @@ def main():
 
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
-    cfg.PER_EPOCH_EVAL=True
+
     cfg.freeze()
 
     output_dir = cfg.OUTPUT_DIR
